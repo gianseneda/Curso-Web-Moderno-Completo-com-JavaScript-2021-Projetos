@@ -1,0 +1,23 @@
+{
+  "name": "Curso-Web-Moderno-Completo-com-JavaScript-2021-Projetos",
+  "version": "1.0.0",
+  "description": "Domine Web, 14 Cursos + Projetos, Javascript, Angular, React, Vue, Node, HTML, CSS, jQuery, Bootstrap Webpack Gulp MySQL",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/gianseneda/Curso-Web-Moderno-Completo-com-JavaScript-2021-Projetos.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/gianseneda/Curso-Web-Moderno-Completo-com-JavaScript-2021-Projetos/issues"
+  },
+  "homepage": "https://github.com/gianseneda/Curso-Web-Moderno-Completo-com-JavaScript-2021-Projetos#readme",
+  "devDependencies": {
+    "eslint": "^7.23.0"
+  }
+}
