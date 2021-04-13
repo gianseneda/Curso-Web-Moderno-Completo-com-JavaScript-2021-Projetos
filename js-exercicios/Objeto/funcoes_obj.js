@@ -5,7 +5,7 @@ const pessoa = {
 };
 
 console.log(Object.keys(pessoa)); //todas as chaves (nome idade peso)
-console.log(Object.values(pessoa)); //todas as tribuicaos
+console.log(Object.values(pessoa)); //todas as atribuicaos
 console.log(Object.entries(pessoa)); //retorna array
 
 Object.entries(pessoa).forEach(([chave, valor]) => {
