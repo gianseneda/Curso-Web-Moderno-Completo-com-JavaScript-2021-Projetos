@@ -19,5 +19,9 @@
   "homepage": "https://github.com/gianseneda/Curso-Web-Moderno-Completo-com-JavaScript-2021-Projetos#readme",
   "devDependencies": {
     "eslint": "^7.23.0"
+  },
+  "dependencies": {
+    "lodash": "^4.17.21",
+    "nodemon": "^2.0.7"
   }
 }
