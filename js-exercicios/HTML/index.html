@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+    <title>Exercícios HTML</title>
+  </head>
+  <body>
+    <header>
+      <h1>Exercícios HTML</h1>
+    </header>
+    <nav>
+      <a href wm-nav="exercicios/teste.html">0-Teste</a>|
+      <a href wm-nav="exercicios/listas.html">1-Listas</a>
+      <a href wm-nav=""></a>
+    </nav>
+    <section id="conteudo"></section>
+    <footer>
+      <br />
+      Curso de Web Moderno
+    </footer>
+
+    <script>
+      document.querySelectorAll("[wm-nav]").forEach((link) => {
+        const conteudo = document.getElementById("conteudo");
+
+        link.onclick = function (e) {
+          e.preventDefault(); //previne que o evento ocorra, no caso, abrir pagina
+          fetch(link.getAttribute("wm-nav"))
+            .then((resp) => resp.text())
+            .then((html) => (conteudo.innerHTML = html));
+        };
+      });
+    </script>
+  </body>
+</html>
