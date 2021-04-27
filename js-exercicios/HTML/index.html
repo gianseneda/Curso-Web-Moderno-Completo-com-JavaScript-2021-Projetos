@@ -11,25 +11,38 @@
       <h1>Exercícios HTML</h1>
     </header>
     <nav>
-      <a href wm-nav="exercicios/teste.html">0-Teste</a>|
-      <a href wm-nav="exercicios/listas.html">1-Listas</a>
-      <a href wm-nav=""></a>
+      <a href wm-nav="exercicios/teste.html">0-Teste</a> |
+      <a href wm-nav="exercicios/listas.html">1-Listas</a> |
+      <a href wm-nav="exercicios/lista_aninhada.html">2-Lista Aninhada</a> |
+      <a href wm-nav="exercicios/tabela.html">3-Tabela</a> |
+      <a href wm-nav="exercicios/form/form.html">4-Formulário</a> |
     </nav>
-    <section id="conteudo"></section>
+    <section id="content"></section>
     <footer>
       <br />
       Curso de Web Moderno
     </footer>
 
     <script>
-      document.querySelectorAll("[wm-nav]").forEach((link) => {
-        const conteudo = document.getElementById("conteudo");
+      const links = document.querySelectorAll("[wm-nav]");
 
-        link.onclick = function (e) {
-          e.preventDefault(); //previne que o evento ocorra, no caso, abrir pagina
-          fetch(link.getAttribute("wm-nav"))
-            .then((resp) => resp.text())
-            .then((html) => (conteudo.innerHTML = html));
+      const content = document.getElementById("content");
+
+      links.forEach((link) => {
+        link.onclick = async function (e) {
+          e.preventDefault();
+          const attr = link.getAttribute("wm-nav");
+          console.log("attr", attr);
+
+          try {
+            const response = await fetch(attr);
+
+            const text = await response.text();
+
+            content.innerHTML = text;
+          } catch (err) {
+            console.log(JSON.stringify(err, null, 2));
+          }
         };
       });
     </script>
