@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="UTF-8" />
+    <title>Modificando HTML #01</title>
+    <link rel="stylesheet" href="css/estilo.css" />
+  </head>
+
+  <body class="conteudo exercicio">
+    <script>
+      const body = document.querySelector("body");
+
+      const div1 = document.createElement("div");
+      div1.classList.add("destaque");
+      div1.innerHTML = "Primeiro";
+
+      const p = document.createElement("p");
+      p.innerHTML = "Segundo";
+      const div2 = document.createElement("div");
+      div2.appendChild(p); //insere esse elemento
+
+      body.appendChild(div1);
+      body.appendChild(div2);
+    </script>
+  </body>
+</html>

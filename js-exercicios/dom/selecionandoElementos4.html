@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="UTF-8" />
+    <title>Selecionar Elementos #04</title>
+    <link rel="stylesheet" href="css/estilo.css" />
+  </head>
+
+  <body class="conteudo exercicio">
+    <div>
+      <p>Início</p>
+    </div>
+    <div>
+      <ul>
+        <li>Pedro</li>
+        <li>Ana</li>
+        <li>Bia</li>
+      </ul>
+    </div>
+    <div>
+      <p>Fim</p>
+    </div>
+    <script>
+      function log() {
+        console.log(this);
+      }
+
+      HTMLCollection.prototype.log = log; //imprime no log
+      HTMLElement.prototype.log = log;
+      NodeList.prototype.log = log;
+      Node.prototype.log = log;
+
+      const lista = document.querySelector("div ul");
+      lista.parentNode.log(); //<div>
+      lista.childNodes.log(); // NodeList 3 [li,li,li]
+
+      const primeiro = lista.firstChild;
+      primeiro.log(); //text
+      primeiro.nextSibling.log(); //Pedro
+
+      const ultimo = lista.lastChild;
+      ultimo.log(); //text
+      ultimo.previousSibling.log(); //Bia
+
+      lista.children.log(); //HTMLCOLLECTION
+      lista.firstElementChild.log(); //li PEDRO
+      lista.lastElementChild.log(); //li BIA
+    </script>
+  </body>
+</html>

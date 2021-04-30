@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="UTF-8" />
+    <title>Selecionar Elementos #02</title>
+    <link rel="stylesheet" href="css/estilo.css" />
+  </head>
+  <body class="conteudo exercicio">
+    <div id="primeiro">#primeiro</div>
+    <div>Segundo</div>
+    <div class="terceiro ultimo"><span wb-attrib>.terceiro .ultimo</span></div>
+    <script>
+      document.querySelector("#primeiro").classList.add("destaque");
+
+      const selecionar = (seletor) => {
+        document
+          .querySelectorAll(seletor)
+          .forEach((e) => e.classList.add("destaque"));
+      };
+
+      const desselecionar = (seletor) => {
+        document
+          .querySelectorAll(seletor)
+          .forEach((e) => e.classList.remove("destaque"));
+      };
+
+      selecionar("div");
+
+      desselecionar("*");
+
+      desselecionar(".terceiro.ultimo");
+
+      selecionar(":not(#primeiro)");
+      desselecionar("*");
+      selecionar(":nth-child(1)");
+    </script>
+  </body>
+</html>
