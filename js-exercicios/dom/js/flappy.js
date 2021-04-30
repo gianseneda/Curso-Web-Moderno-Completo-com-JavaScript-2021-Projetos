@@ -48,3 +48,131 @@ function ParDeBarreiras(altura, abertura, x) {
 
 // const b = new ParDeBarreiras(700, 300, 400);
 // document.querySelector("[wm-flappy]").appendChild(b.elemento);
+
+function Barreiras(altura, largura, abertura, espaco, notificarPonto) {
+  this.pares = [
+    new ParDeBarreiras(altura, abertura, largura), //largura representa o x
+    new ParDeBarreiras(altura, abertura, largura + espaco),
+    new ParDeBarreiras(altura, abertura, largura + espaco * 2),
+    new ParDeBarreiras(altura, abertura, largura + espaco * 3),
+  ];
+
+  const deslocamento = 3; //px
+  this.animar = () => {
+    this.pares.forEach((par) => {
+      par.setX(par.getX() - deslocamento);
+
+      //quando o elemento sair da tela
+      if (par.getX() < -par.getLargura()) {
+        par.setX(par.getX() + espaco * this.pares.length);
+        par.sortearAbertura(); //para a barreira voltar com um tamanho diferente
+      }
+
+      const meio = largura / 2;
+      const cruzouOMeio =
+        par.getX() + deslocamento >= meio && par.getX() < meio;
+      if (cruzouOMeio) notificarPonto();
+    });
+  };
+}
+
+function Passaro(alturaJogo) {
+  let voando = false;
+  this.elemento = novoElemento("img", "passaro");
+  this.elemento.src = "imgs/passaro.png";
+
+  this.getY = () => parseInt(this.elemento.style.bottom.split("px")[0]);
+  this.setY = (y) => (this.elemento.style.bottom = `${y}px`);
+
+  window.onkeydown = (e) => (voando = true);
+  window.onkeyup = (e) => (voando = false);
+  this.animar = () => {
+    const novoY = this.getY() + (voando ? 8 : -5);
+    const alturaMaxima = alturaJogo - this.elemento.clientHeight; //altura do pássaro
+
+    if (novoY <= 0) {
+      this.setY(0);
+    } else if (novoY >= alturaMaxima) {
+      this.setY(alturaMaxima);
+    } else {
+      this.setY(novoY);
+    }
+  };
+
+  this.setY(alturaJogo / 2);
+}
+
+function Progresso() {
+  this.elemento = novoElemento("span", "progresso");
+  this.atualizarPontos = (pontos) => {
+    this.elemento.innerHTML = pontos;
+  };
+  this.atualizarPontos(0);
+}
+
+// const barreiras = new Barreiras(700, 1100, 300, 400);
+// const passaro = new Passaro(700);
+// const areaDoJogo = document.querySelector("[wm-flappy]");
+
+// areaDoJogo.appendChild(passaro.elemento);
+// areaDoJogo.appendChild(new Progresso().elemento);
+// barreiras.pares.forEach((par) => areaDoJogo.appendChild(par.elemento));
+// setInterval(() => {
+//   barreiras.animar();
+//   passaro.animar();
+// }, 20);
+
+function estaoSobrepostos(elementoA, elementoB) {
+  const a = elementoA.getBoundingClientRect(); //retângulo associado ao elemento a
+  const b = elementoB.getBoundingClientRect(); //retângulo associado ao elemento b
+
+  const horizontal = a.left + a.width >= b.left && b.left + b.width >= a.left;
+  const vertical = a.top + a.height >= b.top && b.top + b.height >= a.top;
+  return horizontal && vertical;
+}
+
+function colidiu(passaro, barreiras) {
+  let colidiu = false;
+  barreiras.pares.forEach((parDeBarreiras) => {
+    if (!colidiu) {
+      const superior = parDeBarreiras.superior.elemento;
+      const inferior = parDeBarreiras.inferior.elemento;
+      colidiu =
+        estaoSobrepostos(passaro.elemento, superior) ||
+        estaoSobrepostos(passaro.elemento, inferior);
+    }
+  });
+  return colidiu;
+}
+
+function FlappyBird() {
+  let pontos = 0;
+
+  const areaDoJogo = document.querySelector("[wm-flappy]");
+  const altura = areaDoJogo.clientHeight;
+  const largura = areaDoJogo.clientWidth;
+
+  const progresso = new Progresso();
+  const barreiras = new Barreiras(altura, largura, 300, 400, () =>
+    progresso.atualizarPontos(++pontos)
+  );
+  const passaro = new Passaro(altura);
+
+  areaDoJogo.appendChild(progresso.elemento);
+  areaDoJogo.appendChild(passaro.elemento);
+  barreiras.pares.forEach((par) => areaDoJogo.appendChild(par.elemento));
+
+  this.start = () => {
+    //loop do jogo
+    const temporizador = setInterval(() => {
+      barreiras.animar();
+      passaro.animar();
+
+      if (colidiu(passaro, barreiras)) {
+        clearInterval(temporizador);
+      }
+    }, 20);
+  };
+}
+
+new FlappyBird().start();
