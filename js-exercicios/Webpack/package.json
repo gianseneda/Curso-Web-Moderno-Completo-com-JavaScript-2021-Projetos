@@ -1,0 +1,25 @@
+{
+  "name": "capítulo-Webpack",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "start": "webpack",
+    "build": "cross-env NODE_ENV=production webpack"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "devDependencies": {
+    "cross-env": "5.1.5",
+    "optimize-css-assets-webpack-plugin":"^4.0.1",
+    "uglify-webpack-plugin": "^1.2.5",
+    "node-sass": "^4.9.0",
+    "sass-loader":"11.0.1",
+    "css-loader": "^0.28.11",
+    "mini-css-extract-plugin": "^0.4.0",
+    "style-loader": "^0.21.0",
+    "webpack": "^4.8.1",
+    "webpack-cli": "^2.1.3"
+  }
+}
