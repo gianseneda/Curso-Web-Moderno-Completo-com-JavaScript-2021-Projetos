@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="UTF-8" />
+    <title>Entendendo jQuery</title>
+    <link rel="stylesheet" href="css/estilo.css" />
+    <script src="js/jquery.js"></script>
+  </head>
+
+  <body class="conteudo exercicio">
+    <h1>Entendendo jQuery</h1>
+    <div>1</div>
+    <div>2</div>
+
+    <script>
+      $("div") //usa jQuery a partir do $
+        .hide(5000) //5000 ms para esconder
+        .show(5000) // 5000 ms para voltar
+        .fadeOut(5000);
+      console.log($("div").get(0)); //seleciono uma lista e pego o 1 elemento. Pegando o elemento original as funcoes acimas não serão aplicadas pois elas não veem nativamente com estas intancias para funcionar. O Jquery funciona como se fosse um objeto hierarquico para ser manipulado.
+      console.log($.isEmptyObject({}));
+      console.log(jQuery.inArray(3, [1, 2, 3])); //onde o 3 está contido neste array
+
+      $.fn.fundoVerde = function () {
+        this.css("background-color", "green");
+      };
+      $("body").fundoVerde();
+    </script>
+  </body>
+</html>
