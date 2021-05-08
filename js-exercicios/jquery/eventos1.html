@@ -1,25 +1,56 @@
 <!DOCTYPE html>
 <html>
-
-<head>
-    <meta charset='UTF-8'>
+  <head>
+    <meta charset="UTF-8" />
     <title>Eventos #01</title>
-    <link rel='stylesheet' href='css/estilo.css'>
-    <script src='js/jquery.js'></script>
+    <link rel="stylesheet" href="css/estilo.css" />
+    <script src="js/jquery.js"></script>
     <style>
-        input {
-            font-size: 2em;
-        }
+      input {
+        font-size: 2em;
+      }
     </style>
-</head>
+  </head>
 
-<body class='conteudo exercicio'>
+  <body class="conteudo exercicio">
     <h1>Eventos #01</h1>
-    <div id='posicao'></div>
-    <div id='cliques'>Cliques: 0</div>
-    <input type="text" placeholder="Cor de Background">
+    <div id="posicao"></div>
+    <div id="cliques">Cliques: 0</div>
+    <input type="text" placeholder="Cor de Background" />
 
     <script>
-        // ...
+      function mostrarPosicaoMouse(e) {
+        $("#posicao").html(`x: ${e.clientX} y: ${e.clientY} `);
+      }
+
+      $("body").on("mousemove", mostrarPosicaoMouse);
+
+      $("#posicao").mouseover((e) => {
+        $("body").off("mousemove", mostrarPosicaoMouse);
+      }); //não mostra o movimento em cima dessa div
+
+      $("#posicao").mouseleave((e) => {
+        $("body").on("mousemove", mostrarPosicaoMouse);
+      }); //volta a monitorar assim que sair
+
+      let cliques = 0;
+
+      $("body").click((e) => {
+        $("#cliques").html(`Cliques: ${++cliques}`);
+      });
+
+      const backgroundOriginal = $("body").css("background-color");
+
+      $("input").keyup(function (e) {
+        //nao pode ser arrow pelo escopo do this querendo ser o input
+        const valor = $(this).val(); //valor
+        if (valor.match(/#[\da-fA-F]{3,6}/)) {
+          //expressão regular para hexadecial: digitos de a a f, minusculo ou maiusculo, de 3 a 6 vezes repetidos
+          $("body").css("background-color", valor);
+        } else {
+          $("body").css("background-color", backgroundOriginal);
+        }
+      });
     </script>
-</body>
+  </body>
+</html>
