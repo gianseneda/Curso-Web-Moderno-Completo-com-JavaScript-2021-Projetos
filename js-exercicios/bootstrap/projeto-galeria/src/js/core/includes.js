@@ -12,7 +12,11 @@ function loadIncludes(parent) {
         success(data) {
           $(e).html(data);
           $(e).removeAttr("wm-include"); //para ela nao ser lida depois da primeira vez
+
+          loadIncludes(e); //se houver outro wm-include em outros filhos deste elemento
         },
       });
     });
 }
+
+loadIncludes();
