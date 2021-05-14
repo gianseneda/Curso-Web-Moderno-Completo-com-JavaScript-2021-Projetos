@@ -1,5 +1,13 @@
 import $ from "jquery";
 
+const loadHtmlSuccessCallbacks = [];
+
+export function onLoadHtmlSuccess(callback) {
+  if (!loadHtmlSuccessCallbacks.includes(callback)) {
+    loadHtmlSuccessCallbacks.push(callback);
+  }
+}
+
 function loadIncludes(parent) {
   //lerá os atributos wm-include e seus pais, caso passemos este parametro
   if (!parent) parent = "body";
@@ -12,7 +20,7 @@ function loadIncludes(parent) {
         success(data) {
           $(e).html(data);
           $(e).removeAttr("wm-include"); //para ela nao ser lida depois da primeira vez
-
+          loadHtmlSuccessCallbacks.forEach((callback) => callback(data));
           loadIncludes(e); //se houver outro wm-include em outros filhos deste elemento
         },
       });
