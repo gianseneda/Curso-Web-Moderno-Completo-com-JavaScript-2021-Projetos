@@ -1,15 +1,37 @@
 <!DOCTYPE html>
 <html>
-<head>
-    <meta charset="UTF-8">
+  <head>
+    <meta charset="UTF-8" />
     <title>Binding</title>
-    <link rel="stylesheet" href="/css/estilo.css">
+    <link rel="stylesheet" href="/css/estilo.css" />
     <script src="/js/vue.min.js"></script>
-</head>
-<body class="exercicio">
+  </head>
+  <body class="exercicio">
+    <div id="app">
+      <p>{{ link }}</p>
+      <p><a href="{{ link }}">Canal?</a></p>
+      <!-- não renderizará desta forma -->
+      <p><a v-bind:href="link">Canal</a></p>
+      <!-- conteúdo desta propriedade precisa ser interpolado (usando o bind) -->
+      <p><a :href="link">Canal</a></p>
+      <!-- bind tb -->
+      <input type="text" v-model="nome" /><br />
+      <span>{{nome}}</span>
+    </div>
 
     <script>
-        // ...
+      new Vue({
+        el: "#app",
+        data: {
+          nome: "Maria",
+          link: "http://youtube.com/cod3rcursos",
+        },
+        watch: {
+          nome(novoValor) {
+            console.log(novoValor.toUpperCase());
+          },
+        },
+      });
     </script>
-</body>
+  </body>
 </html>
