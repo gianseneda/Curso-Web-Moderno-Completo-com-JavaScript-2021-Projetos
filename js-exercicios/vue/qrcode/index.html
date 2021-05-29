@@ -1,19 +1,52 @@
 <!DOCTYPE html>
 <html>
-
-<head>
-    <meta charset="UTF-8">
+  <head>
+    <meta charset="UTF-8" />
     <script src="js/vue.min.js"></script>
     <script src="js/qrious.min.js"></script>
-    <link rel="stylesheet" href="css/style.css">
+    <!--lib que gera o QR CODE-->
+    <link rel="stylesheet" href="css/style.css" />
     <title>Gerador de QRCode</title>
-</head>
+  </head>
 
-<body>
+  <body>
+    <div class="" id="app">
+      <h1>{{title}}</h1>
+      <div>
+        <input
+          type="text"
+          size="25"
+          placeholder="Digite para gerar..."
+          :value="text"
+          @input="onData"
+        />
+        <!-- podia refatorar apenas com o v-model, sem o value e sem input -->
+      </div>
+      <div v-if="text" class="output">
+        <img :src="newQRCode" alt="QRCode" />
+      </div>
+    </div>
 
     <script>
-        // ...
+      new Vue({
+        el: "#app",
+        data: {
+          title: "Gerador de QRCode",
+          text: "http://www.cod3r.com.br",
+          qrcode: new QRious({ size: 300 }),
+        },
+        computed: {
+          newQRCode() {
+            this.qrcode.value = this.text;
+            return this.qrcode.toDataURL();
+          },
+        },
+        methods: {
+          onData(event) {
+            this.text = event.target.value;
+          },
+        },
+      });
     </script>
-</body>
-
+  </body>
 </html>
