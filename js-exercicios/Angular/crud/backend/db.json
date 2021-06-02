@@ -1,7 +1,29 @@
 {
   "product": [
-    { "id": 1, "name": "Caneta Bic Preta", "price": 5.89 },
-    { "id": 2, "name": "MacBook Pro", "price": 12000.89 },
-    { "id": 3, "name": "Samsung S20+", "price": 5000.98 }
+    {
+      "id": 1,
+      "name": "Caneta Bic Preta",
+      "price": 5.89
+    },
+    {
+      "id": 2,
+      "name": "MacBook Pro",
+      "price": 12000.89
+    },
+    {
+      "id": 3,
+      "name": "Samsung S20+",
+      "price": 5000.98
+    },
+    {
+      "name": "Geladeira",
+      "price": "1898.99",
+      "id": 4
+    },
+    {
+      "name": "SmartPhone MotoG 6",
+      "price": "1643.89",
+      "id": 5
+    }
   ]
 }
