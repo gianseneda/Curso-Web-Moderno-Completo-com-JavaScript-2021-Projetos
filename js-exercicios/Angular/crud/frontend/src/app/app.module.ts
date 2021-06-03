@@ -1,4 +1,4 @@
-import { NgModule } from "@angular/core";
+import { NgModule, LOCALE_ID } from "@angular/core";
 import { BrowserModule } from "@angular/platform-browser";
 import { HttpClientModule } from "@angular/common/http";
 
@@ -24,8 +24,15 @@ import { ProductCreateComponent } from "./components/product/product-create/prod
 
 import { FormsModule } from "@angular/forms";
 import { MatFormFieldModule } from "@angular/material/form-field";
+import { MatTableModule } from "@angular/material/table";
 import { MatInputModule } from "@angular/material/input";
-import { ProductReadComponent } from './components/product/product-read/product-read.component';
+import { ProductReadComponent } from "./components/product/product-read/product-read.component";
+
+import localePt from "@angular/common/locales/pt";
+import { registerLocaleData } from "@angular/common";
+import { ProductUpdateComponent } from './components/product/product-update/product-update.component';
+
+registerLocaleData(localePt);
 
 @NgModule({
   declarations: [
@@ -39,6 +46,7 @@ import { ProductReadComponent } from './components/product/product-read/product-
     ForDirective,
     ProductCreateComponent,
     ProductReadComponent,
+    ProductUpdateComponent,
   ],
   imports: [
     BrowserModule,
@@ -49,13 +57,19 @@ import { ProductReadComponent } from './components/product/product-read/product-
     MatListModule,
     MatCardModule,
     MatButtonModule,
+    MatTableModule,
     MatSnackBarModule,
     HttpClientModule,
     FormsModule,
     MatFormFieldModule,
     MatInputModule,
   ],
-  providers: [],
+  providers: [
+    {
+      provide: LOCALE_ID,
+      useValue: "pt-BR",
+    },
+  ],
   bootstrap: [AppComponent],
 })
 export class AppModule {}

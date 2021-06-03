@@ -8,7 +8,8 @@ import { Component, OnInit } from "@angular/core";
   styleUrls: ["./product-read.component.css"],
 })
 export class ProductReadComponent implements OnInit {
-  products: Product[];
+  products: Product[] = [];
+  displayedColumns = ["id", "name", "price", "action"];
 
   constructor(private productService: ProductService) {}
 
