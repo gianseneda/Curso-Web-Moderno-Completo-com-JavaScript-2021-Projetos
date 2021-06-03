@@ -24,6 +24,11 @@
       "name": "SmartPhone MotoG 6",
       "price": "1643.89",
       "id": 5
+    },
+    {
+      "name": "Kindle PaperWhite 10 geraçao",
+      "price": "349.98",
+      "id": 6
     }
   ]
 }
