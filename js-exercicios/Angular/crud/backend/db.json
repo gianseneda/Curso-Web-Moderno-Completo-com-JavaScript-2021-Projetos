@@ -3,7 +3,7 @@
     {
       "id": 1,
       "name": "Caneta Bic Preta",
-      "price": 5.89
+      "price": "5.90"
     },
     {
       "id": 2,
@@ -16,17 +16,12 @@
       "price": 5000.98
     },
     {
-      "name": "Geladeira",
-      "price": "1898.99",
-      "id": 4
-    },
-    {
       "name": "SmartPhone MotoG 6",
       "price": "1643.89",
       "id": 5
     },
     {
-      "name": "Kindle PaperWhite 10 geraçao",
+      "name": "Kindle PaperWhite 10 geração",
       "price": "349.98",
       "id": 6
     }
